@@ -9,4 +9,20 @@ function cheerioScraping(data) {
     return title
 }
 
-module.exports = { cheerioScraping }
+function cheerioAnalyzing(data) {
+    // refine this plz
+    const $ = cheerio.load(data)
+    // do stuff in here
+    let tempArray = []
+
+    const title = $('title').text()
+    const para = $('p').text()
+
+    // first item is title, second item should be something else (but using the title just to get it to work)
+    tempArray.push(title)
+    tempArray.push(title)
+
+    return tempArray
+}
+
+module.exports = { cheerioScraping, cheerioAnalyzing }

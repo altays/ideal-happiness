@@ -25,7 +25,7 @@ async function scrape(link) {
 
         if (text) {
             let parsedTitle = cheerioUtility.cheerioScraping(text)
-            await fs.writeFile(`./data/rawHTML/${parsedTitle}`, text.data);
+            await fs.writeFile(`./data/rawHTML/${parsedTitle}.html`, text.data);
         }
     }
     catch (error){
@@ -33,5 +33,19 @@ async function scrape(link) {
     }
 }
 
+async function analyze(filePath) {
+    // add read command
+    
+    // add cheerio command    
+    try {
+        const data = await fs.readFile(filePath, { encoding: 'utf8' });
+        const analyzedData = cheerioUtility.cheerioAnalyzing(data)
+        console.log(analyzedData.length)
+        await fs.writeFile(`./data/processed/${analyzedData[0]}.txt`, analyzedData[1]);
+    } 
+    catch (error){
+        console.error(error)
+    }
+}
 
-module.exports = { makeRequest, scrape}
+module.exports = { makeRequest, scrape, analyze}
