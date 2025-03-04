@@ -48,4 +48,21 @@ async function analyze(filePath) {
     }
 }
 
-module.exports = { makeRequest, scrape, analyze}
+async function analyzeTest(filePath) {
+    // add read command
+    
+    // add cheerio command    
+    try {
+        const data = await fs.readFile(filePath, { encoding: 'utf8' });
+        const analyzedData = cheerioUtility.cheerioAnalyzing(data)
+        // return analyzedData
+        console.log(analyzedData)
+        // console.log(analyzedData.length)
+        // await fs.writeFile(`./data/processed/${analyzedData[0]}.txt`, analyzedData[1]);
+    } 
+    catch (error){
+        console.error(error)
+    }
+}
+
+module.exports = { makeRequest, scrape, analyze, analyzeTest}
