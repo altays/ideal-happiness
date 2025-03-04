@@ -5,6 +5,7 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "init": "mkdir data data/processed data/rawHTML",
     "analyze":"node main.js a",
     "analyzetest":"node main.js a-test",
     "scrape":"node main.js s"

@@ -2,8 +2,9 @@ const axios = require('axios')
 const fs = require('node:fs/promises');
 const cheerioUtility = require('./cheerio-utility')
 
-async function makeRequest(link) {
 
+async function makeRequest(link) {
+    console.log('in make request')
     const config = { //this configures the request to be a GET request
         method: 'get',
         url: link
@@ -11,6 +12,7 @@ async function makeRequest(link) {
 
     try {
         let res = await axios(config)
+        console.log('valid try in make!')
         return res
 
     } catch (error) {
@@ -26,6 +28,7 @@ async function scrape(link) {
         if (text) {
             let parsedTitle = cheerioUtility.cheerioScraping(text)
             await fs.writeFile(`./data/rawHTML/${parsedTitle}.html`, text.data);
+            console.log('valid try in scrape!')
         }
     }
     catch (error){
@@ -34,9 +37,7 @@ async function scrape(link) {
 }
 
 async function analyze(filePath) {
-    // add read command
-    
-    // add cheerio command    
+ 
     try {
         const data = await fs.readFile(filePath, { encoding: 'utf8' });
         const analyzedData = cheerioUtility.cheerioAnalyzing(data)
@@ -49,16 +50,12 @@ async function analyze(filePath) {
 }
 
 async function analyzeTest(filePath) {
-    // add read command
-    
-    // add cheerio command    
+ 
     try {
         const data = await fs.readFile(filePath, { encoding: 'utf8' });
         const analyzedData = cheerioUtility.cheerioAnalyzing(data)
-        // return analyzedData
         console.log(analyzedData)
-        // console.log(analyzedData.length)
-        // await fs.writeFile(`./data/processed/${analyzedData[0]}.txt`, analyzedData[1]);
+
     } 
     catch (error){
         console.error(error)
