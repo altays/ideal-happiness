@@ -28,7 +28,6 @@ async function scrape(link) {
         if (text) {
             let parsedTitle = cheerioUtility.cheerioScraping(text)
             await fs.writeFile(`./data/rawHTML/${parsedTitle}.html`, text.data);
-            console.log('valid try in scrape!')
         }
     }
     catch (error){
@@ -41,7 +40,6 @@ async function analyze(filePath) {
     try {
         const data = await fs.readFile(filePath, { encoding: 'utf8' });
         const analyzedData = cheerioUtility.cheerioAnalyzing(data)
-        console.log(analyzedData.length)
         await fs.writeFile(`./data/processed/${analyzedData[0]}.txt`, analyzedData[1]);
     } 
     catch (error){
