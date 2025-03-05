@@ -4,7 +4,6 @@ const cheerioUtility = require('./cheerio-utility')
 
 
 async function makeRequest(link) {
-    console.log('in make request')
     const config = { //this configures the request to be a GET request
         method: 'get',
         url: link
@@ -12,7 +11,6 @@ async function makeRequest(link) {
 
     try {
         let res = await axios(config)
-        console.log('valid try in make!')
         return res
 
     } catch (error) {
@@ -40,7 +38,8 @@ async function analyze(filePath) {
     try {
         const data = await fs.readFile(filePath, { encoding: 'utf8' });
         const analyzedData = cheerioUtility.cheerioAnalyzing(data)
-        await fs.writeFile(`./data/processed/${analyzedData[0]}.txt`, analyzedData[1]);
+        console.log('analyzed data',analyzedData)
+        await fs.writeFile(`./data/processed/${cheerioUtility.cleanText(analyzedData[0],5)}.txt`, analyzedData[0]);
     } 
     catch (error){
         console.error(error)
@@ -59,5 +58,7 @@ async function analyzeTest(filePath) {
         console.error(error)
     }
 }
+
+
 
 module.exports = { makeRequest, scrape, analyze, analyzeTest}

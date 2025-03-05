@@ -4,7 +4,7 @@ function cheerioScraping(data) {
     const $ = cheerio.load(data.data)
     // do stuff in here -> pull title and stuiff, save to an array, use title in name of doc
 
-    const title = $('title').text().replace(/\s+/g, '')
+    const title = cleanText($('title').text(),5)
 
     return title
 }
@@ -16,13 +16,16 @@ function cheerioAnalyzing(data) {
     let tempArray = []
 
     const title = $('title').text()
-    const para = $('p').text()
+    const stuff = $('.poem__body > .field--body p>span').text().toString()
 
-    // first item is title, second item should be something else (but using the title just to get it to work)
-    tempArray.push(title)
+    tempArray.push(stuff)
     tempArray.push(title)
 
     return tempArray
 }
 
-module.exports = { cheerioScraping, cheerioAnalyzing }
+function cleanText(text, length) {
+    return text.replace(/\s+/g, '').substring(0,length)
+}
+
+module.exports = { cheerioScraping, cheerioAnalyzing, cleanText }
