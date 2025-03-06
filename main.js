@@ -16,6 +16,9 @@ if (processRoute=="s"){
 } else if (processRoute=="a-test") {
     console.log('testing')
     utility.analyzeTest(analyzeFilePath)
+} else if (processRoute =="c") {
+    console.log('cleaning')
+    utility.clean(analyzeFilePath)
 }
 else {
     console.log('please indicate a route')
