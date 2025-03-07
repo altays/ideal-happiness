@@ -3,7 +3,7 @@ const cheerio = require('cheerio');
 function cheerioScraping(data) {
     const $ = cheerio.load(data.data)
     // do stuff in here -> pull title and stuiff, save to an array, use title in name of doc
-
+    // refine - maybe just pull body and title?
     const title = cleanText($('title').text(),5)
 
     return title
@@ -17,10 +17,6 @@ function cheerioAnalyzing(data) {
 
     const title = $('title').text()
     const stuff = cleanTextSpaces($('.poem__body > .field--body p>span').text().toString())
-
-    // use the cleanTextSpaces() function
-    // cleaning script?
-
 
     tempArray.push(stuff)
     tempArray.push(title)
@@ -52,17 +48,17 @@ function cleanTextSpaces(text){
     let loopStringB  = "";
     let loopStringC  = "";
     let loopStringD = "";
+    let lastChar = tempString[tempString.length-1]
 
     const patternFW = /[!"#$%—&'*+,\.\/:;<=>?@[\]^_`|~][a-zA-Z]/gi
     const patternBW = /[a-zA-Z]["#$%&'*+\/<(=>@[\]^_`|~]/gi
 
-    loopStringA = regexReplace(tempString, patternFW,0)
+    loopStringA = regexReplace(tempString, patternFW,0) + lastChar
     loopStringB += loopStringA[0]
-    loopStringB += regexReplace(loopStringA, patternFW,1)
-    loopStringC += regexReplace(loopStringB, patternBW,0)
+    loopStringB += regexReplace(loopStringA, patternFW,1) 
+    loopStringC += regexReplace(loopStringB, patternBW,0) + lastChar
     loopStringD += loopStringC[0]
-    loopStringD += regexReplace(loopStringC, patternBW,1)
-    loopStringD += loopStringC[loopStringC.length-1]
+    loopStringD += regexReplace(loopStringC, patternBW,1) 
 
     return loopStringD
 }

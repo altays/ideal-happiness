@@ -38,8 +38,7 @@ async function analyze(filePath) {
     try {
         const data = await fs.readFile(filePath, { encoding: 'utf8' });
         const analyzedData = cheerioUtility.cheerioAnalyzing(data)
-        console.log('analyzed data',analyzedData)
-        await fs.writeFile(`./data/scraped/${cheerioUtility.cleanTextSpaceLength(analyzedData[0],5)}.txt`, analyzedData[0]);
+        await fs.writeFile(`./data/scraped/${cheerioUtility.cleanTextSpaceLength(analyzedData[0],5)}.txt`, analyzedData);
     } 
     catch (error){
         console.error(error)
@@ -64,8 +63,19 @@ async function clean(filePath) {
     try {
         const data = await fs.readFile(filePath, { encoding: 'utf8' });
         const cleanData = cheerioUtility.cleanTextSpaces(data)
-        console.log('cleaned data',cleanData)
-        await fs.writeFile(`./data/processed/${cheerioUtility.cleanTextSpaceLength(cleanData[0],5)}.txt`, cleanData[0]);
+        await fs.writeFile(`./data/processed/${cheerioUtility.cleanTextSpaceLength(cleanData[0],5)}-cleaned.txt`, cleanData);
+    } 
+    catch (error){
+        console.error(error)
+    }
+}
+
+async function cleanTest(filePath) {
+ 
+    try {
+        const data = await fs.readFile(filePath, { encoding: 'utf8' });
+        const cleanData = cheerioUtility.cleanTextSpaces(data)
+        console.log('cleaned data:\n',cleanData)
     } 
     catch (error){
         console.error(error)
@@ -73,4 +83,4 @@ async function clean(filePath) {
 }
 
 
-module.exports = { makeRequest, scrape, analyze, analyzeTest, clean}
+module.exports = { makeRequest, scrape, analyze, analyzeTest, clean, cleanTest}
