@@ -63,7 +63,7 @@ async function clean(filePath) {
     try {
         const data = await fs.readFile(filePath, { encoding: 'utf8' });
         const cleanData = cheerioUtility.cleanTextSpaces(data)
-        await fs.writeFile(`./data/processed/${cheerioUtility.cleanTextSpaceLength(cleanData[0],5)}-cleaned.txt`, cleanData);
+        await fs.writeFile(`./data/processed/${cheerioUtility.cleanTextSpaceLength(cleanData,5)}-cleaned.txt`, cleanData);
     } 
     catch (error){
         console.error(error)

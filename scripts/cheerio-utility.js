@@ -4,7 +4,8 @@ function cheerioScraping(data) {
     const $ = cheerio.load(data.data)
     // do stuff in here -> pull title and stuiff, save to an array, use title in name of doc
     // refine - maybe just pull body and title?
-    const title = cleanText($('title').text(),5)
+    const title = cleanTextSpaceLength($('title').text(),5)
+
 
     return title
 }
@@ -16,8 +17,9 @@ function cheerioAnalyzing(data) {
     let tempArray = []
 
     const title = $('title').text()
+    console.log('within ch analyze after title ', title)
     const stuff = cleanTextSpaces($('.poem__body > .field--body p>span').text().toString())
-
+    console.log('within ch analyze after title ', title)
     tempArray.push(stuff)
     tempArray.push(title)
 

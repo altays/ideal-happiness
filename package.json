@@ -6,11 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "init": "mkdir data data/processed data/rawHTML data/scraped",
-    "analyze":"node main.js a poemaday.html",
-    "analyzetest":"node main.js a-test poemaday.html",
+    "analyze":"node main.js a",
+    "analyzetest":"node main.js a-test",
     "scrape":"node main.js s",
-    "clean":"node main.js c AsKar.txt",
-    "cleantest":"node main.js c-test AsKar.txt"
+    "clean":"node main.js c",
+    "cleantest":"node main.js c-test "
   },
   "keywords": [],
   "author": "",

@@ -1,14 +1,16 @@
-Template project for webscraping with axios and cheerio!
+# Template project for webscraping with axios and cheerio!
 
-# Initializing
+## Initializing
 
 Run 'npm run init' to create the data / processed and data / html folders
 
-# Package Scripts
+## Using the shell script
 
-Scrape - will scrape using the url set in the 'scrapeURL' variable and save the html page under data / rawHTML. Uses the title of the webpage as the name of the doc
-Analyze - will analyze the file in the next argument (i.e., npm run analyze urfilehere.html) and save the resulting text in data/parsed. 
-    Go to scripts / cheerio-utility.js and modify the 'cheerioAnalyzing' function to change what is parsed
-AnalyzeTest - basically the same as analyze, but will print to the console instead of saving to data / processed (i.e., npm run analyzeTest urfilehere.html)
-Clean - will clean text, adding additional spaces (to be expanded)
-CleanTest - basically the same as clean, but will pirnt to console instead of saving as a file
+Update the sh files with file names
+
+sh main.sh _
+
+* 'i' will set up the data folder structure
+* 's' will run the scrape command using the saved url
+* 'a' and 'at' will analyze the html file under /rawHTML/. Note that 'a' will save a .txt file under /processed/ wheras 'at' will just print to the console.
+* 'c' and 'ct' will clean the .txt file under /processed/. Similar to the 'a' and 'at' commands, 'c' will produce a file and 'ct' will only log it.

@@ -2,15 +2,13 @@ const process = require('process');
 const utility = require('./scripts/utility')
 
 const processRoute = process.argv[2]
-const analyzeFileName = process.argv[3]
-const analyzeFilePath = `./data/rawHTML/${analyzeFileName}`
-const cleanFilePath = `./data/scraped/${analyzeFileName}`
-
-const scrapeURL = 'https://webcode.me/'
+const inputName = process.argv[3]
+const analyzeFilePath = `./data/rawHTML/${inputName}`
+const cleanFilePath = `./data/scraped/${inputName}`
 
 if (processRoute=="s"){
     console.log('scraping...')
-    utility.scrape(scrapeURL)
+    utility.scrape(inputName)
 } else if (processRoute=="a") {
     console.log('analyzing...')
     utility.analyze(analyzeFilePath)
