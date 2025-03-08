@@ -38,7 +38,7 @@ async function analyze(filePath) {
     try {
         const data = await fs.readFile(filePath, { encoding: 'utf8' });
         const analyzedData = cheerioUtility.cheerioAnalyzing(data)
-        await fs.writeFile(`./data/scraped/${cheerioUtility.cleanTextSpaceLength(analyzedData[0],5)}.txt`, analyzedData);
+        await fs.writeFile(`./data/scraped/${cheerioUtility.cleanTextSpaceLength(analyzedData[0],5)}.txt`, analyzedData[0]);
     } 
     catch (error){
         console.error(error)
@@ -50,7 +50,7 @@ async function analyzeTest(filePath) {
     try {
         const data = await fs.readFile(filePath, { encoding: 'utf8' });
         const analyzedData = cheerioUtility.cheerioAnalyzing(data)
-        console.log(analyzedData)
+        console.log(analyzedData[0])
 
     } 
     catch (error){
