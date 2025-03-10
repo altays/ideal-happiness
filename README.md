@@ -2,7 +2,11 @@
 
 ## Using the shell script
 
-Update the sh files with file names
+Update the following variables based on the file names / url in the .sh file:
+
+* rawHTML
+* scrapedText
+* url
 
 sh main.sh _
 
